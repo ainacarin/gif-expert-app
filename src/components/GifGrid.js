@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { getGifs } from "../api/giphyApi";
+import React from "react";
 import { GifGridItem } from "./GifGridItem";
 
+import { useFetchGif } from '../hooks/useFetchGif';
+
 export const GifGrid = ({ category }) => {
-  const [images, setImages] = useState([]);
 
-    // exect only when dependencies are modified
-    useEffect(() => {
-      getGifs( category ).then(setImages);
-    }, [category]);
-    //   // exect only once time, the first time component
-    //   useEffect(() => {
-    //     getGifs( category ).then( setImages );
-    //   }, []);
+    const { data:images, loading } = useFetchGif( category );
 
+    console.log(loading);
   return (
     <>
       <h3>{category}</h3>
+      {loading && <p>Loading...</p>}
       <div className="card-grid">
         {images.map((img) => (
           <GifGridItem key={img.id} {...img} />
