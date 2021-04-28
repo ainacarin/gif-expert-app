@@ -2,21 +2,13 @@ import React from "react";
 
 import "./GifExpertApp.css";
 import { AddCategory } from './components/AddCategory';
+import { GifGrid } from "./components/GifGrid";
 
 export const GifExpertApp = () => {
-  const categoriesInit = ["Dragon Ball", "Sailor Moon", "Samurai Shamploo"];
+  const categoriesInit = ["Dragon Ball"];
 
   // change => new render
   const [categories, setCategories] = React.useState(categoriesInit);
-
-  // const handleAdd = (event) => {
-  //   // option A - spreading
-  //   // setCategories([...categories, 'Naruto']);
-    
-  //   // option B - callback
-  //   setCategories((oldCategories) => [...categories, 'Naruto']);
-  // };
-
 
   return (
     <>
@@ -24,11 +16,8 @@ export const GifExpertApp = () => {
       <AddCategory setCategories={ setCategories }/>
       <hr />
 
-      {/* <button onClick={handleAdd}>Add</button> */}
       <ul>
-        {categories.map((category) => {
-          return <li key={category}>{category}</li>;
-        })}
+        {categories.map((category) => <GifGrid key={category} category={ category }/>)}
       </ul>
     </>
   );
