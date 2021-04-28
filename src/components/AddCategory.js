@@ -19,7 +19,7 @@ export const AddCategory = ({ setCategories }) => {
 
     // validation no empty input
     if (inputValue.trim().length > 1) {
-      setCategories((oldCategories) => [...oldCategories, inputValue]);
+      setCategories((oldCategories) => [inputValue, ...oldCategories]);
       // clean input
       setInputValue("");
     } else{
